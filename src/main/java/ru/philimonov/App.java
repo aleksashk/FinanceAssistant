@@ -86,9 +86,9 @@ public class App {
             ps.setString(2, md5Hex(password));
             int number = ps.executeUpdate();
             if (number == 0) {
-                System.out.println("Fail!!");
+                System.out.println("Registration failed.");
             } else {
-                System.out.println("Success!");
+                System.out.println("Registration was successful.");
             }
         }
     }
@@ -119,9 +119,9 @@ public class App {
             ps.setInt(3, id);
             int x = ps.executeUpdate();
             if (x == 0) {
-                System.out.println("Fail!");
+                System.out.println("Account creation failed!");
             } else {
-                System.out.println("Success!");
+                System.out.println("Account created.");
             }
         }
     }
@@ -135,9 +135,9 @@ public class App {
             ps.setString(2, account_name);
             int x = ps.executeUpdate();
             if (x == 0) {
-                System.out.println("Fail!");
+                System.out.println("Account deletion failed.");
             } else {
-                System.out.println("Success!");
+                System.out.println("The account was deleted.");
             }
         }
     }
@@ -150,7 +150,7 @@ public class App {
         try {
             result = reader.readLine();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Invalid data.");
         }
         return result;
     }
