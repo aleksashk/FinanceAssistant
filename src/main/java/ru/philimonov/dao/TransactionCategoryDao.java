@@ -11,10 +11,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class TransactionTypeDao {
+public class TransactionCategoryDao {
     private final DataSource dataSource;
 
-    public TransactionTypeDao() {
+    public TransactionCategoryDao() {
         HikariConfig config = new HikariConfig();
         config.setJdbcUrl("jdbc:postgresql://localhost/postgres");
         config.setUsername("postgres");
@@ -22,8 +22,8 @@ public class TransactionTypeDao {
         dataSource = new HikariDataSource(config);
     }
 
-    public TransactionTypeModel createType(String type) {
-        TransactionTypeModel transactionTypeModel = null;
+    public TransactionCategoryModel createCategory(String type) {
+        TransactionCategoryModel transactionCategoryModel = null;
         String sql = "insert into category(name) values (?)";
 
         try (Connection connection = dataSource.getConnection()) {
@@ -31,17 +31,17 @@ public class TransactionTypeDao {
             ps.setString(1, type);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                transactionTypeModel = new TransactionTypeModel();
-                transactionTypeModel.setId(rs.getLong("id"));
-                transactionTypeModel.setType(type);
+                transactionCategoryModel = new TransactionCategoryModel();
+                transactionCategoryModel.setId(rs.getLong("id"));
+                transactionCategoryModel.setType(type);
             }
         } catch (SQLException e) {
             throw new CustomException(e);
         }
-        return transactionTypeModel;
+        return transactionCategoryModel;
     }
 
-    public void editType(String name, long id) {
+    public void editCategory(String name, long id) {
         String sql = "update category set name = ? where id = ?";
 
         try (Connection connection = dataSource.getConnection()) {
@@ -55,7 +55,7 @@ public class TransactionTypeDao {
         }
     }
 
-    public void deleteType(String name) {
+    public void deleteCategory(String name) {
         String sql = "delete from category where name = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);

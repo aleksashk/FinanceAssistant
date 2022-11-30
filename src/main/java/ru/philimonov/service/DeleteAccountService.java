@@ -5,7 +5,7 @@ import ru.philimonov.dao.AccountDao;
 public class DeleteAccountService {
     private final AccountDao accountDao;
 
-    public DeleteAccountService() {
+    public DeleteAccountService(AccountDao accountDao) {
         this.accountDao = new AccountDao();
     }
 

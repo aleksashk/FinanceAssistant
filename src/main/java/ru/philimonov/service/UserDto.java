@@ -1,5 +1,7 @@
 package ru.philimonov.service;
 
+import java.util.Objects;
+
 public class UserDto {
     private long id;
     private String email;
@@ -26,5 +28,23 @@ public class UserDto {
                 "id=" + id +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        UserDto userDto = (UserDto) o;
+
+        if (id != userDto.id) return false;
+        return Objects.equals(email, userDto.email);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = (int) (id ^ (id >>> 32));
+        result = 31 * result + (email != null ? email.hashCode() : 0);
+        return result;
     }
 }

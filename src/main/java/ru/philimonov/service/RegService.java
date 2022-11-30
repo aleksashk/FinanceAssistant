@@ -9,7 +9,7 @@ public class RegService {
     private final DigestService digestService;
     private final UserModelToDtoConverter userModelToDtoConverter;
 
-    public RegService() {
+    public RegService(UserDao userDao, DigestService digestService, UserModelToDtoConverter userModelToDtoConverter) {
         this.userDao = new UserDao();
         this.digestService = new Md5DigestService();
         this.userModelToDtoConverter = new UserModelToDtoConverter();

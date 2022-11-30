@@ -6,7 +6,7 @@ public class AccountModel {
     private long id;
     private String name;
     private BigDecimal amount;
-    private int user_id;
+    private long userId;
 
     public long getId() {
         return id;
@@ -32,11 +32,11 @@ public class AccountModel {
         this.amount = amount;
     }
 
-    public int getUserId() {
-        return user_id;
+    public long getUserId() {
+        return userId;
     }
 
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
+    public void setUserId(long userId) {
+        this.userId = userId;
     }
 }

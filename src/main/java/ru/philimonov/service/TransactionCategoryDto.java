@@ -1,6 +1,6 @@
 package ru.philimonov.service;
 
-public class TransactionTypeDto {
+public class TransactionCategoryDto {
     private long id;
     private String type;
 

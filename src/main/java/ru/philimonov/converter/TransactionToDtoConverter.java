@@ -1,15 +1,15 @@
 package ru.philimonov.converter;
 
-import ru.philimonov.dao.TransactionTypeModel;
-import ru.philimonov.service.TransactionTypeDto;
+import ru.philimonov.dao.TransactionCategoryModel;
+import ru.philimonov.service.TransactionCategoryDto;
 
-public class TransactionToDtoConverter implements Converter<TransactionTypeModel, TransactionTypeDto> {
+public class TransactionToDtoConverter implements Converter<TransactionCategoryModel, TransactionCategoryDto> {
 
     @Override
-    public TransactionTypeDto convert(TransactionTypeModel source) {
-        TransactionTypeDto transactionTypeDto = new TransactionTypeDto();
-        transactionTypeDto.setId(source.getId());
-        transactionTypeDto.setType(source.getType());
-        return transactionTypeDto;
+    public TransactionCategoryDto convert(TransactionCategoryModel source) {
+        TransactionCategoryDto transactionCategoryDto = new TransactionCategoryDto();
+        transactionCategoryDto.setId(source.getId());
+        transactionCategoryDto.setType(source.getType());
+        return transactionCategoryDto;
     }
 }

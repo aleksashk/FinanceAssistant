@@ -10,13 +10,13 @@ public class CreateAccountService {
     private final AccountDao accountDao;
     private final AccountToDtoConverter accountToDtoConverter;
 
-    public CreateAccountService() {
+    public CreateAccountService(AccountDao accountDao, AccountToDtoConverter accountToDtoConverter) {
         this.accountDao = new AccountDao();
         this.accountToDtoConverter = new AccountToDtoConverter();
     }
 
-    public AccountDto createAccount(String accountName, BigDecimal amount, long id) {
-        AccountModel accountModel = accountDao.createAccount(accountName, amount, id);
+    public AccountDto createAccount(String accountName, BigDecimal amount, long userId) {
+        AccountModel accountModel = accountDao.createAccount(accountName, amount, userId);
         if (accountModel == null) {
             return null;
         }

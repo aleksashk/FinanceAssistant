@@ -25,15 +25,21 @@ public class AccountDao {
         dataSource = new HikariDataSource(config);
     }
 
-    public List<String> getAccount(long id) {
-        ArrayList<String> accountModels = new ArrayList<>();
+    public List<AccountModel> getAccount(long id) {
+        AccountModel accountModel;
+        ArrayList<AccountModel> accountModels = new ArrayList<>();
         String sql = "select * from account where user_id = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                accountModels.add(rs.getString("name"));
+                accountModel = new AccountModel();
+                accountModel.setId(rs.getLong("id"));
+                accountModel.setName(rs.getString("name"));
+                accountModel.setAmount(rs.getBigDecimal("amount"));
+                accountModel.setUserId(id);
+                accountModels.add(accountModel);
             }
         } catch (SQLException e) {
             throw new CustomException(e);
@@ -57,6 +63,7 @@ public class AccountDao {
                 accountModel.setId(rs.getLong("id"));
                 accountModel.setName(accountName);
                 accountModel.setAmount(amount);
+                accountModel.setId(id);
             }
         } catch (SQLException e) {
             throw new CustomException("Invalid data.");
@@ -65,7 +72,7 @@ public class AccountDao {
     }
 
     public void deleteAccount(long id) {
-        String sql = "delete from account where user_id = ?";
+        String sql = "delete from account where id = ?";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, id);

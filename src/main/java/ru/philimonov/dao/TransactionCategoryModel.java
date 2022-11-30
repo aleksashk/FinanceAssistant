@@ -1,6 +1,6 @@
 package ru.philimonov.dao;
 
-public class TransactionTypeModel {
+public class TransactionCategoryModel {
     private long id;
     private String type;
 
