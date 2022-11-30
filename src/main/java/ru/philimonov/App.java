@@ -3,7 +3,10 @@ package ru.philimonov;
 import ru.philimonov.service.AccountService;
 import ru.philimonov.service.AuthService;
 import ru.philimonov.service.CreateAccountService;
+import ru.philimonov.service.CreateTypeTransactionService;
 import ru.philimonov.service.DeleteAccountService;
+import ru.philimonov.service.DeleteTypeTransactionService;
+import ru.philimonov.service.EditTypeTransactionService;
 import ru.philimonov.service.RegService;
 import ru.philimonov.service.UserDto;
 
@@ -45,6 +48,23 @@ public class App {
                     case 3:
                         DeleteAccountService deleteAccountService = new DeleteAccountService();
                         deleteAccountService.deleteAccount(id);
+                        break;
+                    case 4:
+                        String typeName = request("Account name: ");
+                        CreateTypeTransactionService createTypeTransactionService = new CreateTypeTransactionService();
+                        createTypeTransactionService.createType(typeName);
+                        break;
+                    case 5:
+                        System.out.println("Input account id for update: ");
+                        long typeId = scanner.nextLong();
+                        String typeNameNew = request("new account name: ");
+                        EditTypeTransactionService editTypeTransactionService = new EditTypeTransactionService();
+                        editTypeTransactionService.editTransactionType(typeNameNew, typeId);
+                        break;
+                    case 6:
+                        String deletedTypeName = request("Input account name for delete: ");
+                        DeleteTypeTransactionService deleteTypeTransactionService = new DeleteTypeTransactionService();
+                        deleteTypeTransactionService.deleteTransactionType(deletedTypeName);
                         break;
                 }
             case 2:
