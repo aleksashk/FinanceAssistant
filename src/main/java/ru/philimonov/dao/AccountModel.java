@@ -1,9 +1,11 @@
 package ru.philimonov.dao;
 
+import java.math.BigDecimal;
+
 public class AccountModel {
     private long id;
     private String name;
-    private double amount;
+    private BigDecimal amount;
     private int user_id;
 
     public long getId() {
@@ -22,11 +24,11 @@ public class AccountModel {
         this.name = name;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

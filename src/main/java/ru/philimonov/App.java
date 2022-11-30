@@ -13,6 +13,7 @@ import ru.philimonov.service.UserDto;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Scanner;
 
@@ -42,7 +43,7 @@ public class App {
                         CreateAccountService createAccountService = new CreateAccountService();
                         String accountName = request("account title: ");
                         System.out.println("Input amount: ");
-                        double amount = scanner.nextDouble();
+                        BigDecimal amount = scanner.nextBigDecimal();
                         createAccountService.createAccount(accountName, amount, id);
                         break;
                     case 3:

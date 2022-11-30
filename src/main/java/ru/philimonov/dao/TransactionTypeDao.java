@@ -24,7 +24,7 @@ public class TransactionTypeDao {
 
     public TransactionTypeModel createType(String type) {
         TransactionTypeModel transactionTypeModel = null;
-        String sql = "";
+        String sql = "insert into category(name) values (?)";
 
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
@@ -48,12 +48,8 @@ public class TransactionTypeDao {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
             ps.setLong(2, id);
-            int number = ps.executeUpdate();
-            if (number == 0) {
-                System.out.println("The account was edited successfully!");
-            } else {
-                System.out.println("Failed attempt to edit a bank account!");
-            }
+            ps.executeUpdate();
+
         } catch (SQLException e) {
             throw new CustomException(e);
         }
@@ -64,12 +60,7 @@ public class TransactionTypeDao {
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setString(1, name);
-            int number = ps.executeUpdate();
-            if (number == 0) {
-                System.out.println("Transaction category removed!");
-            } else {
-                System.out.println("Deleting a transaction category failed");
-            }
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new CustomException(e);
         }

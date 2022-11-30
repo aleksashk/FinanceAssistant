@@ -1,9 +1,11 @@
 package ru.philimonov.service;
 
+import java.math.BigDecimal;
+
 public class AccountDto {
     private long id;
     private String Name;
-    private double amount;
+    private BigDecimal amount;
     private int userId;
 
     public long getId() {
@@ -22,11 +24,11 @@ public class AccountDto {
         Name = name;
     }
 
-    public double getAmount() {
+    public BigDecimal getAmount() {
         return amount;
     }
 
-    public void setAmount(double amount) {
+    public void setAmount(BigDecimal amount) {
         this.amount = amount;
     }
 

@@ -5,6 +5,7 @@ import com.zaxxer.hikari.HikariDataSource;
 import ru.philimonov.exception.CustomException;
 
 import javax.sql.DataSource;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -40,13 +41,13 @@ public class AccountDao {
         return accountModels;
     }
 
-    public AccountModel createAccount(String accountName, double amount, long id) {
+    public AccountModel createAccount(String accountName, BigDecimal amount, long id) {
         AccountModel accountModel = null;
         String sql = "insert into account(name,amount, user_id) values(?,?,?)";
         try (Connection connection = dataSource.getConnection()) {
             PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, accountName);
-            ps.setDouble(2, amount);
+            ps.setBigDecimal(2, amount);
             ps.setLong(1, id);
             ps.executeUpdate();
 
@@ -69,11 +70,7 @@ public class AccountDao {
             PreparedStatement ps = connection.prepareStatement(sql);
             ps.setLong(1, id);
             int x = ps.executeUpdate();
-            if (x == 0) {
-                System.out.println("Account deletion failed.");
-            } else {
-                System.out.println("Account deleted!");
-            }
+
         } catch (SQLException e) {
             throw new CustomException(e);
         }
